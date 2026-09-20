@@ -1,0 +1,106 @@
+name: Hosted loopback benchmark
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: benchmark-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  benchmark:
+    name: ${{ matrix.os }} hosted loopback
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    env:
+      GOWORK: 'off'
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: '1.25.13'
+          cache: false
+      - name: Build benchmark
+        run: go build -trimpath -o build/homa-bench ./cmd/homa-bench
+      - name: Record host metadata without hostnames or serial numbers
+        run: |
+          mkdir -p benchmark-results
+          {
+            printf 'evidence_scope=GitHub-hosted loopback; client and server on the same host\n'
+            printf 'commit=%s\n' "$GITHUB_SHA"
+            printf 'runner_os=%s\n' "$RUNNER_OS"
+            printf 'runner_arch=%s\n' "$RUNNER_ARCH"
+            printf 'kernel='
+            uname -srm
+            go version
+            if [ "$RUNNER_OS" = macOS ]; then
+              sysctl hw.model hw.ncpu hw.memsize
+              sysctl machdep.cpu.brand_string 2>/dev/null || true
+              ifconfig lo0 | head -n 1 | sed 's/.*mtu /loopback_mtu=/'
+            else
+              awk -F ': *' '/^model name/ {print "cpu_model=" $2; exit}' /proc/cpuinfo
+              printf 'cpu_count='
+              getconf _NPROCESSORS_ONLN
+              awk '/^MemTotal:/ {print "memory_kib=" $2}' /proc/meminfo
+              printf 'loopback_mtu='
+              cat /sys/class/net/lo/mtu
+            fi
+          } > benchmark-results/metadata.txt
+      # The hosted VM's passwordless sudo is used only for protocol-146 raw
+      # sockets on 127.0.0.1; no kernel module or physical host is involved.
+      - name: Compare native Homa and persistent TCP on hosted loopback
+        timeout-minutes: 11
+        run: |
+          sudo -n ./build/homa-bench serve -bind 127.0.0.1 -duration 10m > benchmark-results/server.log 2>&1 &
+          server_pid=$!
+          cleanup() {
+            sudo -n kill "$server_pid" 2>/dev/null || true
+            wait "$server_pid" || true
+            if [ -f benchmark-results/raw.json ]; then
+              sudo -n chmod 644 benchmark-results/raw.json
+            fi
+          }
+          trap cleanup EXIT
+          ready=0
+          for attempt in {1..50}; do
+            if grep -q 'Echo server:' benchmark-results/server.log; then
+              ready=1
+              break
+            fi
+            if ! sudo -n kill -0 "$server_pid" 2>/dev/null; then
+              cat benchmark-results/server.log
+              exit 1
+            fi
+            sleep 0.1
+          done
+          if [ "$ready" != 1 ]; then
+            cat benchmark-results/server.log
+            exit 1
+          fi
+          sudo -n ./build/homa-bench client \
+            -local 127.0.0.1:4003 -peer 127.0.0.1:4000 -tcp-peer 127.0.0.1:14000 \
+            -sizes 64,1024,16384,65536,1000000 \
+            -warmup 10 -small-samples 1000 -large-samples 100 -rounds 3 \
+            -duration 10m -scope "GitHub-hosted $RUNNER_OS loopback; same-host client/server" \
+            -out benchmark-results/raw.json 2> benchmark-results/client.log
+          cat benchmark-results/client.log
+      - name: Preserve raw samples and host metadata
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: hosted-loopback-${{ matrix.os }}-${{ github.sha }}
+          path: benchmark-results/
+          if-no-files-found: warn
+          retention-days: 30

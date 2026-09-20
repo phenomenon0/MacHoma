@@ -99,9 +99,17 @@ No kernel or wire modification was made to get the successful result.
 
 ## Size
 
-`cloc 2.11` measured **1,189 code lines** in the Go protocol library (`api.go`,
+`cloc 2.11` measured **1,197 code lines** in the Go protocol library (`api.go`,
 `endpoint.go`, `rawip.go`, `rawip_unsupported.go`, `internal/wire/wire.go`), excluding
 comments, blanks, CLI, tests, fixtures, VM tooling and vendored upstream headers.
 The upstream Linux implementation previously measured 11,559 C/header code lines
 at this pin; its larger kernel, offload, pacing and instrumentation scope is not
 implemented by this prototype.
+
+## Public CI
+
+[Initial release CI](https://github.com/phenomenon0/MacHoma/actions/runs/35489905200)
+passed tests, race detection, vet and native raw IPv4 loopback on Linux/amd64
+(Ubuntu 24.04) and Darwin/arm64 (macOS 15), with Go 1.25.13. CI uses hosted
+machines and loopback; it does not establish the physical LAN path. The final
+release engine also repeated all 16 bidirectional QEMU kernel checks successfully.

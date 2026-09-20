@@ -1,5 +1,7 @@
 # MacHoma
 
+[![CI](https://github.com/phenomenon0/MacHoma/actions/workflows/ci.yml/badge.svg)](https://github.com/phenomenon0/MacHoma/actions/workflows/ci.yml)
+
 An experimental Go implementation of **native Homa for macOS and Linux**.
 MacHoma sends IPv4 protocol **146**, preserves application bytes, and implements
 the Homa wire protocol in userspace without a custom kernel extension.
@@ -75,6 +77,13 @@ Linux must use `hijack_tcp=0` before creating sockets; use the conservative defa
 `max_gso_size=1000` for the first test. IPv6 and Homa's TCP-hijacking mode are not
 implemented here. Raw sockets do not reserve Homa ports: use one endpoint per
 local IP/port, and do not overlap a userspace endpoint with Linux kernel Homa.
+
+## Compare with TCP
+
+The [benchmark guide](docs/BENCHMARK.md) measures native Homa against persistent
+TCP_NODELAY using the same payloads, warmups, alternating rounds and raw latency
+samples. A manually triggered GitHub workflow runs it on Linux and macOS
+loopback. These checks do not reproduce the paper's loaded datacenter workload.
 
 ## API
 
