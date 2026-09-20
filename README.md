@@ -106,7 +106,8 @@ application-level idempotency. Cancellation is local: Homa has no cancel frame.
 `MaxBufferedBytes` counts protocol-owned payloads and receive bitmaps, including
 requests still owned by running handlers. It is not a process RSS limit: bounded
 packet queues, temporary encoded packets, caller buffers, and allocations inside
-application handlers are additional. `Close` unblocks calls and packet loops;
+application handlers are additional. Each native socket requests a bounded
+1 MiB kernel receive queue (the OS may cap it), also outside that budget. `Close` unblocks calls and packet loops;
 a handler that ignores its context may remain running and retains its worker slot.
 
 Native Homa provides neither encryption nor authenticated caller identity.

@@ -42,6 +42,14 @@ func OpenRaw(ip netip.Addr) (PacketIO, error) {
 	if err != nil {
 		return nil, fmt.Errorf("homa: open raw IPv4 protocol 146 socket (requires raw-socket privilege): %w", err)
 	}
+	// Darwin's default raw-IP receive queue is only 8 KiB: smaller than one
+	// normal 14 KiB unscheduled burst, before kernel packet accounting. Ask
+	// for a bounded queue large enough to absorb bursts while Go is scheduled.
+	// The OS may cap this request; it is separate from Config.MaxBufferedBytes.
+	if err := conn.SetReadBuffer(1 << 20); err != nil {
+		conn.Close()
+		return nil, fmt.Errorf("homa: configure raw IPv4 receive queue: %w", err)
+	}
 	return &rawIP{conn: conn}, nil
 }
 
