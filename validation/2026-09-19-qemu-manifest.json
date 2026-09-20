@@ -1,0 +1,33 @@
+{
+  "kernel_release": "6.17.12-300.fc43.x86_64",
+  "upstream_commit": "d8914b8a57aa48c19a2c8130484961585bcbe53c",
+  "module": "/tmp/homa-port-review/HomaModule/PlatformLab-HomaModule-d8914b8/homa.ko",
+  "module_sha256": "ae64e44ad0bd3d056774e9efc965cd593c6ea71e526ae0ab0b66ccb4bc00d4c3",
+  "initramfs_sha256": "070731839d7f0ab5858f2a38a054cda47f85c8473ccd4287a0ba1f25ff65ae8b",
+  "files": {
+    "e1000.ko": {
+      "sha256": "1c8f0f4c56a4888cb6338b44285bbe608beb9e0c50132e6b0e7b62b12de8c4c8",
+      "bytes": 522246
+    },
+    "homa.ko": {
+      "sha256": "ae64e44ad0bd3d056774e9efc965cd593c6ea71e526ae0ab0b66ccb4bc00d4c3",
+      "bytes": 11912216
+    },
+    "init": {
+      "sha256": "0c86f82555dc21b6e94c52abd92b7a902ddaad7cca9bbbbba31839dc2e22f3c1",
+      "bytes": 22856
+    },
+    "lib64/ld-linux-x86-64.so.2": {
+      "sha256": "cda321bfb96275b6254ac2db274cbcd3280c12f81a16bcbf646eea2a5cc7bae2",
+      "bytes": 983888
+    },
+    "lib64/libc.so.6": {
+      "sha256": "729e3da10aaeb15176ed585bd05ae21255fb6647e83f476e5df15a4e606ce925",
+      "bytes": 2455432
+    },
+    "linux-peer": {
+      "sha256": "2e37e35f97e50fc77eda1bb179b0c258bd92aabfe47dde589028dd098b2d2bab",
+      "bytes": 22976
+    }
+  }
+}

@@ -1,0 +1,58 @@
+name: Go and native loopback
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    env:
+      GOWORK: 'off'
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: '1.25.13'
+          cache: false # Dependency-free module; no go.sum to hash.
+      - name: Toolchain
+        run: |
+          go version
+          cc --version
+      - name: Tests and independent C wire fixtures
+        run: make test
+      - name: Race detector
+        run: make race
+      - name: Go vet
+        run: make vet
+      - name: Build native CLI
+        run: make build
+      - name: Linux peer buffer self-test
+        if: runner.os == 'Linux'
+        run: make linux-peer
+      # GitHub-hosted Linux/macOS VMs have passwordless sudo. This step opens
+      # native protocol-146 sockets only on loopback; it loads no kernel module
+      # and does not establish Linux kernel or physical-network interoperability.
+      - name: Native raw IPv4 loopback
+        timeout-minutes: 2
+        run: sudo -n ./build/homa-echo selftest | tee build/raw-loopback.json

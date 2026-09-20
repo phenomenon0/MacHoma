@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "evidence": "native raw IPv4 loopback between two userspace Homa endpoints",
+  "linux_kernel_interoperability_verified": false,
+  "platform": "darwin/arm64",
+  "ip_protocol": 146,
+  "server": "127.0.0.1:4000",
+  "client": "127.0.0.1:4001",
+  "elapsed_seconds": 0.36354025,
+  "verified_echoes": [
+    {
+      "bytes": 1,
+      "rtt_us": 626.375
+    },
+    {
+      "bytes": 100,
+      "rtt_us": 198.375
+    },
+    {
+      "bytes": 1424,
+      "rtt_us": 267.333
+    },
+    {
+      "bytes": 65535,
+      "rtt_us": 34798.333
+    },
+    {
+      "bytes": 65536,
+      "rtt_us": 55229.667
+    },
+    {
+      "bytes": 65537,
+      "rtt_us": 79145.958
+    },
+    {
+      "bytes": 100000,
+      "rtt_us": 39825.834
+    },
+    {
+      "bytes": 1000000,
+      "rtt_us": 151345.125
+    }
+  ],
+  "server_stats": {
+    "SentPackets": 1878,
+    "ReceivedPackets": 3734,
+    "Retransmissions": 27,
+    "InvalidPackets": 0,
+    "DroppedPackets": 0,
+    "WriteErrors": 0,
+    "CompletedCalls": 0,
+    "HandledRequests": 8,
+    "ActiveRPCs": 0,
+    "ActiveHandlers": 0,
+    "BufferedBytes": 0
+  },
+  "client_stats": {
+    "SentPackets": 1871,
+    "ReceivedPackets": 3731,
+    "Retransmissions": 15,
+    "InvalidPackets": 0,
+    "DroppedPackets": 0,
+    "WriteErrors": 0,
+    "CompletedCalls": 8,
+    "HandledRequests": 0,
+    "ActiveRPCs": 0,
+    "ActiveHandlers": 0,
+    "BufferedBytes": 0
+  }
+}

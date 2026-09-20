@@ -1,0 +1,37 @@
+MacHoma
+-------
+
+Original MacHoma code is distributed under the BSD-2-Clause license in LICENSE.
+The upstream files listed below retain their original licensing notices and
+are not attributed to MacHoma contributors. We use the BSD-2-Clause option
+offered by their upstream dual-license declarations.
+
+Homa protocol and upstream headers
+---------------------------------
+
+Project: PlatformLab/HomaModule
+Source: https://github.com/PlatformLab/HomaModule
+Pinned revision: d8914b8a57aa48c19a2c8130484961585bcbe53c
+
+1. internal/wire/testdata/upstream/homa_wire.h
+   Original file: homa_wire.h
+   SHA-256: 84ee73542f3825d53427a712908df92ff8eee84e515a56d792e29b44a4fe21fa
+   Original notice, preserved verbatim:
+
+   /* SPDX-License-Identifier: BSD-2-Clause OR GPL-2.0+ */
+
+2. interop/vendor/homa.h
+   Original file: homa.h
+   SHA-256: 02c34ca268853e13c45f9dc11f44283c3aeaefee7f5fee32dd3a8a33078aa7df
+   Original notice, preserved verbatim:
+
+   /* SPDX-License-Identifier: BSD-2-Clause OR GPL-2.0+ WITH Linux-syscall-note */
+
+Both headers are unmodified. Their packet layouts and API definitions belong
+to the upstream project. The wire fixtures are generated from the pinned
+homa_wire.h; see internal/wire/testdata/README.md for their provenance and
+regeneration procedure. The shims and fixture generator are MacHoma code.
+
+No Linux Homa kernel module binary or Apple kernel source is distributed in
+this repository. The interoperability harness uses a separately supplied
+Linux kernel and Homa module, which retain their respective licenses.

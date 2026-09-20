@@ -1,0 +1,13 @@
+Captured successful command output, 2026-09-19:
+/tmp/homa-native-build/homa-vmcheck -kernel /boot/vmlinuz-6.17.12-300.fc43.x86_64 -initrd /tmp/homa-qemu/homa-initramfs.cpio.gz
+
+PASS userspace -> unmodified Linux HomaModule: 1 bytes (2.977505972s, TCG correctness only)
+PASS userspace -> unmodified Linux HomaModule: 100 bytes (2.779833ms, TCG correctness only)
+PASS userspace -> unmodified Linux HomaModule: 1424 bytes (697.931µs, TCG correctness only)
+PASS userspace -> unmodified Linux HomaModule: 65535 bytes (8.804782ms, TCG correctness only)
+PASS userspace -> unmodified Linux HomaModule: 65536 bytes (7.085016ms, TCG correctness only)
+PASS userspace -> unmodified Linux HomaModule: 65537 bytes (7.707495ms, TCG correctness only)
+PASS userspace -> unmodified Linux HomaModule: 100000 bytes (9.116693ms, TCG correctness only)
+PASS userspace -> unmodified Linux HomaModule: 1000000 bytes (47.354839ms, TCG correctness only)
+PASS Linux HomaModule -> userspace (guest checks); stats={SentPackets:3935 ReceivedPackets:2281 Retransmissions:716 InvalidPackets:0 DroppedPackets:704 WriteErrors:0 CompletedCalls:8 HandledRequests:8 ActiveRPCs:0 ActiveHandlers:0 BufferedBytes:0}
+Exit code: 0

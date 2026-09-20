@@ -1,0 +1,33 @@
+# Local planning and agent scratch material.
+/tasks/
+
+# Build products and local runtime evidence.
+/build/
+/dist/
+/bin/
+/homa-echo
+/homa-bench
+/homa-linux-peer
+/homa-vmcheck
+/vmcheck
+*.test
+*.out
+*.prof
+*.pprof
+*.o
+*.a
+*.so
+*.dylib
+*.ko
+*.cpio
+*.cpio.gz
+*.qcow2
+*.pcap
+*.pcapng
+
+# Local editor and OS metadata.
+.DS_Store
+__pycache__/
+*.pyc
+.idea/
+.vscode/
