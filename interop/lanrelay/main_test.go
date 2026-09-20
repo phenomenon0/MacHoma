@@ -5,9 +5,27 @@ package main
 import (
 	"bytes"
 	"encoding/binary"
+	"errors"
+	"net"
 	"net/netip"
+	"os"
+	"syscall"
 	"testing"
 )
+
+func TestTransientSendDrop(t *testing.T) {
+	for _, cause := range []error{syscall.ENOBUFS, syscall.EAGAIN, syscall.EWOULDBLOCK} {
+		wrapped := &net.OpError{Op: "write", Net: "ip4", Err: &os.SyscallError{Syscall: "sendto", Err: cause}}
+		if !transientSendDrop(cause) || !transientSendDrop(wrapped) {
+			t.Errorf("transient send failure must drop only its datagram: %v", cause)
+		}
+	}
+	for _, err := range []error{nil, syscall.EACCES, syscall.EMSGSIZE, syscall.ENETUNREACH, os.ErrDeadlineExceeded, errors.New("sendto: no buffer space available")} {
+		if transientSendDrop(err) {
+			t.Errorf("unrelated failure classified as recoverable packet loss: %v", err)
+		}
+	}
+}
 
 func testHoma(source, destination uint16, typ byte) []byte {
 	p := make([]byte, 80)

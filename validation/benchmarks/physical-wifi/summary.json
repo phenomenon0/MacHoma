@@ -1,0 +1,153 @@
+[
+  {
+    "source": "validation/benchmarks/physical-wifi/raw.json",
+    "platform": "linux/amd64",
+    "rows": [
+      {
+        "payload_bytes": 64,
+        "transport": "homa",
+        "samples": 300,
+        "p50_us": 6999.011,
+        "p95_us": 10578.648,
+        "p99_us": 12542.355,
+        "bidirectional_payload_goodput_mbps": 0.14640162184402936,
+        "per_round_p50_us": [
+          7248.072,
+          7097.767,
+          6497.05
+        ],
+        "client_retransmissions": 0
+      },
+      {
+        "payload_bytes": 64,
+        "transport": "tcp",
+        "samples": 300,
+        "p50_us": 4704.256,
+        "p95_us": 8686.786,
+        "p99_us": 15060.562,
+        "bidirectional_payload_goodput_mbps": 0.19042417449772137,
+        "per_round_p50_us": [
+          4953.067,
+          5036.846,
+          4459.212
+        ]
+      },
+      {
+        "payload_bytes": 1024,
+        "transport": "homa",
+        "samples": 300,
+        "p50_us": 7049.136,
+        "p95_us": 11308.108,
+        "p99_us": 14148.956,
+        "bidirectional_payload_goodput_mbps": 2.310180228800791,
+        "per_round_p50_us": [
+          6815.714,
+          6335.605,
+          7422.833
+        ],
+        "client_retransmissions": 0
+      },
+      {
+        "payload_bytes": 1024,
+        "transport": "tcp",
+        "samples": 300,
+        "p50_us": 4707.893,
+        "p95_us": 9285.72,
+        "p99_us": 16610.968,
+        "bidirectional_payload_goodput_mbps": 2.8627862713539733,
+        "per_round_p50_us": [
+          4939.962,
+          4514.056,
+          4599.237
+        ]
+      },
+      {
+        "payload_bytes": 16384,
+        "transport": "homa",
+        "samples": 300,
+        "p50_us": 23827.711,
+        "p95_us": 35828.42,
+        "p99_us": 39755.234,
+        "bidirectional_payload_goodput_mbps": 10.52378317509865,
+        "per_round_p50_us": [
+          24224.151,
+          23677.536,
+          23039.077
+        ],
+        "client_retransmissions": 234
+      },
+      {
+        "payload_bytes": 16384,
+        "transport": "tcp",
+        "samples": 300,
+        "p50_us": 9578.564,
+        "p95_us": 14779.521,
+        "p99_us": 24067.264,
+        "bidirectional_payload_goodput_mbps": 24.420701865619716,
+        "per_round_p50_us": [
+          10177.517,
+          8914.768,
+          10280.422
+        ]
+      },
+      {
+        "payload_bytes": 65536,
+        "transport": "homa",
+        "samples": 30,
+        "p50_us": 101820.736,
+        "p95_us": 138569.769,
+        "p99_us": 192207.926,
+        "bidirectional_payload_goodput_mbps": 9.901365107315627,
+        "per_round_p50_us": [
+          97733.948,
+          100419.053,
+          107714.564
+        ],
+        "client_retransmissions": 369
+      },
+      {
+        "payload_bytes": 65536,
+        "transport": "tcp",
+        "samples": 30,
+        "p50_us": 17647.189,
+        "p95_us": 26820.766,
+        "p99_us": 27212.478,
+        "bidirectional_payload_goodput_mbps": 56.99367175853977,
+        "per_round_p50_us": [
+          15897.126,
+          16872.292,
+          18646.011
+        ]
+      },
+      {
+        "payload_bytes": 1000000,
+        "transport": "homa",
+        "samples": 30,
+        "p50_us": 1540004.12,
+        "p95_us": 1728405.9,
+        "p99_us": 1742862.078,
+        "bidirectional_payload_goodput_mbps": 10.236161634829385,
+        "per_round_p50_us": [
+          1571031.54,
+          1540004.12,
+          1517716.756
+        ],
+        "client_retransmissions": 6090
+      },
+      {
+        "payload_bytes": 1000000,
+        "transport": "tcp",
+        "samples": 30,
+        "p50_us": 142462.208,
+        "p95_us": 244646.402,
+        "p99_us": 260071.745,
+        "bidirectional_payload_goodput_mbps": 104.32262362343208,
+        "per_round_p50_us": [
+          145339.615,
+          138211.22,
+          140509.872
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "path": "Mac native IPv4 protocol146 LAN <-> explicit address-rewriting relay <-> QEMU Ethernet backend <-> unmodified Linux Homa kernel",
+  "Local": "192.0.2.10",
+  "Peer": "192.0.2.20",
+  "LANToVM": 5465,
+  "VMToLAN": 3737,
+  "DroppedLAN": 0,
+  "DroppedVM": 0,
+  "LANSendBufferDrops": 0,
+  "ObservedLANIngressTOS": {
+    "0": 455,
+    "128": 100,
+    "192": 779,
+    "224": 4099,
+    "32": 32
+  },
+  "ObservedVMIngressTOS": {
+    "128": 156,
+    "192": 15,
+    "224": 1836,
+    "96": 1730
+  },
+  "RequestedLANEgressTOS": {
+    "128": 156,
+    "192": 15,
+    "224": 1836,
+    "96": 1730
+  },
+  "MacClientRPCsAcknowledged": 8,
+  "KernelServerRequestsReceived": 8,
+  "KernelClientSweepPassed": true,
+  "Complete": true,
+  "publication_note": "Physical host IPv4 addresses replaced with documentation addresses; protocol data, counts and timings unchanged."
+}

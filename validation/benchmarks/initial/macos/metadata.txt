@@ -1,0 +1,11 @@
+evidence_scope=GitHub-hosted loopback; client and server on the same host
+commit=ab51cf5757f6f162f5c57814b533c89dce96dee7
+runner_os=macOS
+runner_arch=ARM64
+kernel=Darwin 24.6.0 arm64
+go version go1.25.13 darwin/arm64
+hw.model: VirtualMac2,1
+hw.ncpu: 3
+hw.memsize: 7516192768
+machdep.cpu.brand_string: Apple M1 (Virtual)
+loopback_mtu=16384

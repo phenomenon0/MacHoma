@@ -71,10 +71,37 @@ Mac loopback test. Linux interoperability was independently demonstrated by the
 QEMU run above. Together these establish the portable engine's Linux Homa
 interoperability and the native Darwin packet backend's execution, separately.
 
-**Remaining physical-network gate:** Mac ↔ Linux over the actual LAN, including
-protocol146 passage, MTU and observed IP priority markings. Apple's QoS handling
-can rewrite IP_TOS on some interfaces. Neither loopback nor the VM establishes
-physical-network throughput, latency, reliability, or the paper's performance.
+## Physical Mac / Linux validation — PASSED
+
+A physical Apple M3 Ultra Mac on macOS 27.0 exchanged native IPv4 protocol-146
+packets over Wi-Fi with a Linux host. The compatibility fixture used an explicit
+address-rewriting relay from that Linux host into the unmodified HomaModule in
+QEMU. Homa headers and application bytes were unchanged. This is relay-assisted
+physical-Mac/kernel interoperability; the Linux kernel peer was not bare metal.
+
+All eight sizes, **1, 100, 1424, 65535, 65536, 65537, 100000, 1000000 bytes**,
+passed full byte comparison in both directions. The final relay evidence records
+eight kernel server requests, eight distinct Mac client ACKs and a completed
+kernel client sweep. The successful run recorded no relay packet drops.
+
+- [Mac exact-payload checks](validation/2026-09-20-physical/mac-kernel-calls.json)
+- [Independent kernel guest checks](validation/2026-09-20-physical/guest-console.txt)
+- [Relay counters and observed priorities](validation/2026-09-20-physical/relay-report.json)
+- [Physical packet-capture summary](validation/2026-09-20-physical/capture-summary.json)
+- [Host and test-path metadata](validation/2026-09-20-physical/metadata.json)
+
+The retained capture contains 8,333 native-Homa packets, with maximum IPv4 lengths
+of 1,476 bytes from the Mac and 1,500 from Linux, and no observed fragmentation.
+Several nonzero IP priority markings were observed in both directions. This
+establishes markings in these captured packets, not Wi-Fi/switch queue treatment.
+
+An earlier relay attempt aborted on a local ENOBUFS transmit error. The fixture
+now counts ENOBUFS/EAGAIN as a datagram drop for native Homa recovery, with other
+errors remaining fatal. The successful rerun did not encounter this error.
+A separate direct MacHoma-versus-TCP Wi-Fi benchmark then completed with the VM
+and relay stopped; see [measured results](docs/BENCHMARK_RESULTS.md). The temporary
+Mac desktop job, test processes and peer-specific firewall rule were removed.
+No host Homa module or persistent privileged helper was installed.
 
 ## Reproduce Linux interoperability without host kernel changes
 
@@ -99,7 +126,7 @@ No kernel or wire modification was made to get the successful result.
 
 ## Size
 
-`cloc 2.11` measured **1,197 code lines** in the Go protocol library (`api.go`,
+`cloc 2.11` measured **1,201 code lines** in the Go protocol library (`api.go`,
 `endpoint.go`, `rawip.go`, `rawip_unsupported.go`, `internal/wire/wire.go`), excluding
 comments, blanks, CLI, tests, fixtures, VM tooling and vendored upstream headers.
 The upstream Linux implementation previously measured 11,559 C/header code lines
@@ -113,3 +140,12 @@ passed tests, race detection, vet and native raw IPv4 loopback on Linux/amd64
 (Ubuntu 24.04) and Darwin/arm64 (macOS 15), with Go 1.25.13. CI uses hosted
 machines and loopback; it does not establish the physical LAN path. The final
 release engine also repeated all 16 bidirectional QEMU kernel checks successfully.
+
+## Measured TCP comparison
+
+[Full results and raw samples](docs/BENCHMARK_RESULTS.md) cover three paired
+rounds on hosted macOS/arm64 and Linux/amd64. TCP was faster at every tested
+payload size. Increasing the requested native receive queue from the OS default
+to 1 MiB removed a large Darwin multi-packet delay and measured client
+retransmissions. These are sequential loopback results, not a physical-network
+or original-paper performance claim.

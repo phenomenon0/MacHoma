@@ -1,0 +1,24 @@
+{
+  "path": "physical Mac raw146 over shared Wi-Fi to Linux raw146 address relay and QEMU Linux kernel",
+  "mac": {
+    "cpu": "Apple M3 Ultra",
+    "model": "Mac15,14",
+    "logical_cpus": 28,
+    "memory_bytes": 103079215104,
+    "os": "macOS 27.0",
+    "interface_mtu": 1500
+  },
+  "linux": {
+    "cpu": "AMD Ryzen 7 7700X",
+    "logical_cpus": 16,
+    "memory_kib": 31932704,
+    "kernel": "6.17.12-300.fc43.x86_64",
+    "interface_mtu": 1500
+  },
+  "upstream_commit": "d8914b8a57aa48c19a2c8130484961585bcbe53c",
+  "machoma_transport_commit": "bb3d05036f821eaa16dc9fb517b51b728ac2247d",
+  "packet_capture_sha256": "0ac11bab1e59e24fde3352f79166e13d4dc057de7b3a85aff164bd45edd3b96e",
+  "packet_capture_note": "Native protocol146 packet capture retained locally; contains local link/address identifiers and is not published. Observed ingress TOS counts are in relay-report.json.",
+  "host_kernel_modules_changed": false,
+  "firewall": "Temporary peer-specific protocol146 allow rule, removed by test cleanup; no persistent rules."
+}

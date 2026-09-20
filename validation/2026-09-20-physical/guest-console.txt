@@ -1,0 +1,44 @@
+SeaBIOS (version 1.17.0-9.fc43)
+
+
+iPXE (https://ipxe.org) 00:02.0 C000 PCI2.10 PnP PMM+1EFCBC60+1EF0BC60 C000
+Press Ctrl-B to configure iPXE (PCI 00:02.0)...
+
+
+
+Booting from ROM..HOMA_GUEST_INIT isolated QEMU test guest
+HOMA_GUEST_MODULE path=/e1000.ko
+HOMA_GUEST_MODULE path=/homa.ko
+HOMA_GUEST_SETTING path=/proc/sys/net/homa/hijack_tcp value=0
+HOMA_GUEST_SETTING path=/proc/sys/net/homa/max_gso_size value=1000
+HOMA_GUEST_SETTING path=/proc/sys/net/homa/unsched_bytes value=14000
+HOMA_GUEST_SETTING path=/proc/sys/net/homa/timeout_ticks value=2000
+HOMA_GUEST_NETWORK ip=10.0.0.2 mode=interop mtu=1500
+ready mode=serve bind=0.0.0.0:4000 protocol=146 pool_mib=256
+HOMA_GUEST_READY ip=10.0.0.2 port=4000 mtu=1500
+ok mode=serve call=1 id=2451653417907202111 peer=10.0.0.1:4003 bytes=1 fnv1a=af63bd4c8601b7df
+ready mode=client bind=0.0.0.0:4002 protocol=146 pool_mib=256
+ok mode=client call=1 id=2 peer=10.0.0.1:4001 bytes=1 fnv1a=af64184c86025280
+ok mode=serve call=2 id=17190116467793809001 peer=10.0.0.1:4003 bytes=100 fnv1a=b69c374266e8ad65
+ok mode=serve call=3 id=15972168532299604523 peer=10.0.0.1:4003 bytes=1424 fnv1a=6fddda7c4bb20c85
+ok mode=serve call=4 id=5515508735730989931 peer=10.0.0.1:4003 bytes=65535 fnv1a=6203c69d52ea6b26
+ready mode=client bind=0.0.0.0:4002 protocol=146 pool_mib=256
+ok mode=client call=1 id=4 peer=10.0.0.1:4001 bytes=100 fnv1a=5fcfb94cdff485f5
+ok mode=serve call=5 id=14757321985643741235 peer=10.0.0.1:4003 bytes=65536 fnv1a=76d64453e4552325
+ready mode=client bind=0.0.0.0:4002 protocol=146 pool_mib=256
+ok mode=client call=1 id=6 peer=10.0.0.1:4001 bytes=1424 fnv1a=2ad1c0d56a7b0385
+ok mode=serve call=6 id=8157167793795272485 peer=10.0.0.1:4003 bytes=65537 fnv1a=43393f8cfcaab7df
+ready mode=client bind=0.0.0.0:4002 protocol=146 pool_mib=256
+ok mode=serve call=7 id=14302455519820147613 peer=10.0.0.1:4003 bytes=100000 fnv1a=e86c96c870d4cca5
+ok mode=client call=1 id=8 peer=10.0.0.1:4001 bytes=65535 fnv1a=060b558c0503fb7c
+ready mode=client bind=0.0.0.0:4002 protocol=146 pool_mib=256
+ok mode=client call=1 id=10 peer=10.0.0.1:4001 bytes=65536 fnv1a=493e23ec85c4d325
+ok mode=serve call=8 id=7706952553325000033 peer=10.0.0.1:4003 bytes=1000000 fnv1a=19ac808d55202925
+ready mode=client bind=0.0.0.0:4002 protocol=146 pool_mib=256
+ok mode=client call=1 id=12 peer=10.0.0.1:4001 bytes=65537 fnv1a=396a8ae74d736280
+ready mode=client bind=0.0.0.0:4002 protocol=146 pool_mib=256
+ok mode=client call=1 id=14 peer=10.0.0.1:4001 bytes=100000 fnv1a=24662db9e27d1985
+ready mode=client bind=0.0.0.0:4002 protocol=146 pool_mib=256
+ok mode=client call=1 id=16 peer=10.0.0.1:4001 bytes=1000000 fnv1a=d31f46f3875b0465
+HOMA_GUEST_CLIENT_PASS sizes=1,100,1424,65535,65536,65537,100000,1000000
+HOMA_GUEST_CHILD pid=154 exit=0

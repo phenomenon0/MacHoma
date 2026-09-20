@@ -38,6 +38,7 @@ type report struct {
 	Local, Peer                  string
 	LANToVM, VMToLAN             uint64
 	DroppedLAN, DroppedVM        uint64
+	LANSendBufferDrops           uint64
 	ObservedLANIngressTOS        map[uint8]uint64
 	ObservedVMIngressTOS         map[uint8]uint64
 	RequestedLANEgressTOS        map[uint8]uint64
@@ -246,6 +247,12 @@ func lanToVM(raw *net.IPConn, nic *nic, local, peer netip.Addr, s *state) error 
 	}
 }
 
+// The kernel transports recover packet loss themselves. A transient local raw
+// socket queue failure drops this datagram; it must not kill their RPC state.
+func transientSendDrop(err error) bool {
+	return errors.Is(err, syscall.ENOBUFS) || errors.Is(err, syscall.EAGAIN)
+}
+
 func vmToLAN(raw *net.IPConn, nic *nic, peer netip.Addr, s *state) error {
 	control, err := raw.SyscallConn()
 	if err != nil {
@@ -284,8 +291,19 @@ func vmToLAN(raw *net.IPConn, nic *nic, peer netip.Addr, s *state) error {
 		if err := raw.SetWriteDeadline(time.Now().Add(time.Second)); err != nil {
 			return err
 		}
+		s.mu.Lock()
+		s.r.ObservedVMIngressTOS[tos]++
+		s.r.RequestedLANEgressTOS[tos]++
+		s.mu.Unlock()
 		n, err := raw.WriteToIP(p, &net.IPAddr{IP: net.IP(peer.AsSlice())})
 		if err != nil {
+			if transientSendDrop(err) {
+				s.mu.Lock()
+				s.r.DroppedVM++
+				s.r.LANSendBufferDrops++
+				s.mu.Unlock()
+				continue
+			}
 			return err
 		}
 		if n != len(p) {
@@ -293,8 +311,6 @@ func vmToLAN(raw *net.IPConn, nic *nic, peer netip.Addr, s *state) error {
 		}
 		s.mu.Lock()
 		s.r.VMToLAN++
-		s.r.ObservedVMIngressTOS[tos]++
-		s.r.RequestedLANEgressTOS[tos]++
 		s.mu.Unlock()
 	}
 }

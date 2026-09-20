@@ -6,8 +6,8 @@ An experimental Go implementation of **native Homa for macOS and Linux**.
 MacHoma sends IPv4 protocol **146**, preserves application bytes, and implements
 the Homa wire protocol in userspace without a custom kernel extension.
 
-Native macOS loopback and bidirectional interoperability with the unmodified
-Linux HomaModule have passed. See [validation evidence](VALIDATION.md) for the
+Native macOS loopback and physical Mac/Linux kernel interoperability have
+passed, including an explicit relay into the unmodified Linux HomaModule VM. See [validation evidence](VALIDATION.md) for the
 exact test paths and limitations. This project does not claim a historical first
 or the Linux implementation's performance.
 
@@ -79,6 +79,10 @@ implemented here. Raw sockets do not reserve Homa ports: use one endpoint per
 local IP/port, and do not overlap a userspace endpoint with Linux kernel Homa.
 
 ## Compare with TCP
+
+**[Measured results](docs/BENCHMARK_RESULTS.md): TCP has lower median RTT at all
+tested sizes on hosted macOS/Linux loopback and the physical Wi-Fi run.** The receive-queue fix removed
+a large macOS multi-packet slowdown; it did not produce a TCP speed advantage.
 
 The [benchmark guide](docs/BENCHMARK.md) measures native Homa against persistent
 TCP_NODELAY using the same payloads, warmups, alternating rounds and raw latency

@@ -1,0 +1,28 @@
+{
+  "scope": "Captured native IPv4 protocol146 frames on Linux physical Wi-Fi interface during the successful kernel-relay test; no complete-traffic claim. Host identifiers omitted.",
+  "directions": {
+    "mac_to_linux": {
+      "captured_packets": 4760,
+      "max_ipv4_bytes": 1476,
+      "fragmented_packets": 0,
+      "observed_tos": {
+        "224": 3777,
+        "192": 473,
+        "128": 100,
+        "0": 378,
+        "32": 32
+      }
+    },
+    "linux_to_mac": {
+      "captured_packets": 3573,
+      "max_ipv4_bytes": 1500,
+      "fragmented_packets": 0,
+      "observed_tos": {
+        "224": 1672,
+        "192": 15,
+        "128": 156,
+        "96": 1730
+      }
+    }
+  }
+}

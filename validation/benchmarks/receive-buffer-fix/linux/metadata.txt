@@ -1,0 +1,10 @@
+evidence_scope=GitHub-hosted loopback; client and server on the same host
+commit=bb3d05036f821eaa16dc9fb517b51b728ac2247d
+runner_os=Linux
+runner_arch=X64
+kernel=Linux 6.17.0-1022-azure x86_64
+go version go1.25.13 linux/amd64
+cpu_model=AMD EPYC 7763 64-Core Processor
+cpu_count=4
+memory_kib=16373452
+loopback_mtu=65536

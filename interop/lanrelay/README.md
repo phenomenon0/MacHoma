@@ -80,6 +80,12 @@ The final JSON reports:
 - requested traffic-class bytes for outgoing LAN writes, separately;
 - forwarded/dropped packets and completion evidence.
 
+Local raw-socket `ENOBUFS` and `EAGAIN` send failures discard only that datagram
+and increment both `DroppedVM` and `LANSendBufferDrops`; native Homa recovery
+handles the loss. The relay does not retry or alter that packet. Other send
+failures remain fatal. Requested outgoing ToS includes these attempted writes;
+`VMToLAN` counts successful writes only.
+
 Requested outgoing ToS is **not** a physical wire capture. The report does not
 claim Wi-Fi preserves priority or that switch queues use the markings. No
 application payloads or unrelated LAN packets are retained in the logs.

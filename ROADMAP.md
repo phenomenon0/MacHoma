@@ -5,8 +5,10 @@ request/reply operation. It is an experimental transport with a pinned wire ABI.
 
 ## Release gates
 
-- Native physical Mac/Linux network tests with recorded route, MTU and IP priorities.
-- Repeatable latency distributions and throughput measurements against TCP/QUIC
+- Direct bare-metal Linux kernel peer on wired Ethernet; relay-assisted physical
+  Wi-Fi interoperability, MTU and packet priority checks have passed.
+- Extend the published sequential TCP baseline to loaded mixed-message tests,
+  isolated listeners and QUIC comparisons
   on the same hardware; separate Wi-Fi, wired LAN and datacenter results.
 - Pacing, receiver scheduling and congestion behavior under competing traffic.
 - Broader Linux fault interoperability: peer restarts, stale state, loss bursts,

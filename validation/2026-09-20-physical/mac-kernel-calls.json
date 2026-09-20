@@ -1,0 +1,190 @@
+{
+  "path": "Mac native IPv4 protocol146 over physical Wi-Fi to explicit Linux IP relay and unmodified Linux kernel in QEMU",
+  "results": [
+    {
+      "ip_protocol": 146,
+      "local": "192.0.2.20:4003",
+      "peer": "192.0.2.10:4000",
+      "verified_echoes": 1,
+      "bytes_per_request_and_reply": 1,
+      "elapsed_seconds": 2.580209166,
+      "median_rtt_us": 2580190.333,
+      "max_rtt_us": 2580190.333,
+      "endpoint_stats": {
+        "SentPackets": 365,
+        "ReceivedPackets": 42,
+        "Retransmissions": 0,
+        "InvalidPackets": 0,
+        "DroppedPackets": 0,
+        "WriteErrors": 0,
+        "CompletedCalls": 1,
+        "HandledRequests": 0,
+        "ActiveRPCs": 0,
+        "ActiveHandlers": 0,
+        "BufferedBytes": 0
+      }
+    },
+    {
+      "ip_protocol": 146,
+      "local": "192.0.2.20:4003",
+      "peer": "192.0.2.10:4000",
+      "verified_echoes": 1,
+      "bytes_per_request_and_reply": 100,
+      "elapsed_seconds": 0.009612833,
+      "median_rtt_us": 9603.375,
+      "max_rtt_us": 9603.375,
+      "endpoint_stats": {
+        "SentPackets": 13,
+        "ReceivedPackets": 51,
+        "Retransmissions": 0,
+        "InvalidPackets": 0,
+        "DroppedPackets": 0,
+        "WriteErrors": 0,
+        "CompletedCalls": 1,
+        "HandledRequests": 0,
+        "ActiveRPCs": 0,
+        "ActiveHandlers": 0,
+        "BufferedBytes": 0
+      }
+    },
+    {
+      "ip_protocol": 146,
+      "local": "192.0.2.20:4003",
+      "peer": "192.0.2.10:4000",
+      "verified_echoes": 1,
+      "bytes_per_request_and_reply": 1424,
+      "elapsed_seconds": 0.014949875,
+      "median_rtt_us": 14937.959,
+      "max_rtt_us": 14937.959,
+      "endpoint_stats": {
+        "SentPackets": 3,
+        "ReceivedPackets": 4,
+        "Retransmissions": 0,
+        "InvalidPackets": 0,
+        "DroppedPackets": 0,
+        "WriteErrors": 0,
+        "CompletedCalls": 1,
+        "HandledRequests": 0,
+        "ActiveRPCs": 0,
+        "ActiveHandlers": 0,
+        "BufferedBytes": 0
+      }
+    },
+    {
+      "ip_protocol": 146,
+      "local": "192.0.2.20:4003",
+      "peer": "192.0.2.10:4000",
+      "verified_echoes": 1,
+      "bytes_per_request_and_reply": 65535,
+      "elapsed_seconds": 0.085905625,
+      "median_rtt_us": 85790.875,
+      "max_rtt_us": 85790.875,
+      "endpoint_stats": {
+        "SentPackets": 120,
+        "ReceivedPackets": 93,
+        "Retransmissions": 42,
+        "InvalidPackets": 0,
+        "DroppedPackets": 10,
+        "WriteErrors": 0,
+        "CompletedCalls": 1,
+        "HandledRequests": 0,
+        "ActiveRPCs": 0,
+        "ActiveHandlers": 0,
+        "BufferedBytes": 0
+      }
+    },
+    {
+      "ip_protocol": 146,
+      "local": "192.0.2.20:4003",
+      "peer": "192.0.2.10:4000",
+      "verified_echoes": 1,
+      "bytes_per_request_and_reply": 65536,
+      "elapsed_seconds": 0.097745792,
+      "median_rtt_us": 97632.334,
+      "max_rtt_us": 97632.334,
+      "endpoint_stats": {
+        "SentPackets": 121,
+        "ReceivedPackets": 70,
+        "Retransmissions": 50,
+        "InvalidPackets": 0,
+        "DroppedPackets": 13,
+        "WriteErrors": 0,
+        "CompletedCalls": 1,
+        "HandledRequests": 0,
+        "ActiveRPCs": 0,
+        "ActiveHandlers": 0,
+        "BufferedBytes": 0
+      }
+    },
+    {
+      "ip_protocol": 146,
+      "local": "192.0.2.20:4003",
+      "peer": "192.0.2.10:4000",
+      "verified_echoes": 1,
+      "bytes_per_request_and_reply": 65537,
+      "elapsed_seconds": 0.096650291,
+      "median_rtt_us": 96531.792,
+      "max_rtt_us": 96531.792,
+      "endpoint_stats": {
+        "SentPackets": 159,
+        "ReceivedPackets": 100,
+        "Retransmissions": 85,
+        "InvalidPackets": 0,
+        "DroppedPackets": 21,
+        "WriteErrors": 0,
+        "CompletedCalls": 1,
+        "HandledRequests": 0,
+        "ActiveRPCs": 0,
+        "ActiveHandlers": 0,
+        "BufferedBytes": 0
+      }
+    },
+    {
+      "ip_protocol": 146,
+      "local": "192.0.2.20:4003",
+      "peer": "192.0.2.10:4000",
+      "verified_echoes": 1,
+      "bytes_per_request_and_reply": 100000,
+      "elapsed_seconds": 0.122029625,
+      "median_rtt_us": 121796.667,
+      "max_rtt_us": 121796.667,
+      "endpoint_stats": {
+        "SentPackets": 259,
+        "ReceivedPackets": 275,
+        "Retransmissions": 223,
+        "InvalidPackets": 0,
+        "DroppedPackets": 102,
+        "WriteErrors": 0,
+        "CompletedCalls": 1,
+        "HandledRequests": 0,
+        "ActiveRPCs": 0,
+        "ActiveHandlers": 0,
+        "BufferedBytes": 0
+      }
+    },
+    {
+      "ip_protocol": 146,
+      "local": "192.0.2.20:4003",
+      "peer": "192.0.2.10:4000",
+      "verified_echoes": 1,
+      "bytes_per_request_and_reply": 1000000,
+      "elapsed_seconds": 1.1410305410000001,
+      "median_rtt_us": 1139453.625,
+      "max_rtt_us": 1139453.625,
+      "endpoint_stats": {
+        "SentPackets": 1765,
+        "ReceivedPackets": 1971,
+        "Retransmissions": 2288,
+        "InvalidPackets": 0,
+        "DroppedPackets": 1980,
+        "WriteErrors": 0,
+        "CompletedCalls": 1,
+        "HandledRequests": 0,
+        "ActiveRPCs": 0,
+        "ActiveHandlers": 0,
+        "BufferedBytes": 0
+      }
+    }
+  ],
+  "publication_note": "Physical host IPv4 addresses replaced with documentation addresses; protocol data, counts and timings unchanged."
+}
